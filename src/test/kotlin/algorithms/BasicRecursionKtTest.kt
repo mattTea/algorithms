@@ -25,4 +25,25 @@ class BasicRecursionKtTest {
 
         assertThat(result).isEqualTo(2)
     }
+
+    @Test
+    fun `should return element value in list of length 1`() {
+        val result = findHighestNumber(listOf(4))
+
+        assertThat(result).isEqualTo(4)
+    }
+
+    @Test
+    fun `should return highest element value in list of length 2`() {
+        val result = findHighestNumber(listOf(8, 4))
+
+        assertThat(result).isEqualTo(8)
+    }
+
+    @Test
+    fun `should return highest element value in list of length 4`() {
+        val result = findHighestNumber(listOf(8, 12, 4, 12))
+
+        assertThat(result).isEqualTo(12)
+    }
 }
