@@ -6,7 +6,7 @@ fun quickSort(list: List<Int>): List<Int> {
         list.size == 2 -> { if (list[0] < list[1]) list else list.reversed() }
         else -> {
             val pivot = list.first()
-            val lessThanPivot = list.filter { it < pivot }
+            val lessThanPivot = list.drop(1).filter { it <= pivot }
             val moreThanPivot = list.filter { it > pivot }
 
             quickSort(lessThanPivot) + pivot + quickSort(moreThanPivot)

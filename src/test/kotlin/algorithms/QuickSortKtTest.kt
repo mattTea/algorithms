@@ -40,4 +40,11 @@ class QuickSortKtTest {
 
         assertThat(result).containsExactly(1, 3, 5, 6, 7, 8, 9, 12)
     }
+
+    @Test
+    fun `should sort list that includes another number equal to the pivot`() {
+        val result = quickSort(listOf(3, 6, 3, 8))
+
+        assertThat(result).isEqualTo(listOf(3, 3, 6, 8))
+    }
 }
