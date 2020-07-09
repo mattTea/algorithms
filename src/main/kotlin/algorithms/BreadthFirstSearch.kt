@@ -17,25 +17,29 @@ fun main() {
     graph["thom"] = emptyList()
     graph["jonny"] = emptyList()
 
-    val searchQueue = ArrayDeque<String>()
+    fun closestMangoSellerTo(name: String): Boolean {
+        val searchQueue = ArrayDeque<String>()
+        searchQueue += graph[name]!!
 
-    searchQueue += graph["you"]!!
+        val alreadySearched = mutableListOf<String>()
 
-    fun closestMangoSeller(graph: HashMap<String, List<String>>): Boolean {
         while (searchQueue.isNotEmpty()) {
             val person = searchQueue.removeFirst()
-            if (person.isMangoSeller()) {
-                println("$person is your closest mango seller!")
-                return true
-            } else {
-                searchQueue += graph[person]!!
+            if (!alreadySearched.contains(person)) {
+                if (person.isMangoSeller()) {
+                    println("The closest mango seller to $name is $person.")
+                    return true
+                } else {
+                    searchQueue += graph[person]!!
+                    alreadySearched += person
+                }
             }
         }
-        println("there are no mango sellers in your network")
+        println("there are no mango sellers in $name's network")
         return false
     }
 
-    closestMangoSeller(graph)
+    closestMangoSellerTo("you")
 }
 
 private fun String.isMangoSeller() = this[lastIndex] == 'm'
